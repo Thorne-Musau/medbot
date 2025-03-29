@@ -1,0 +1,20 @@
+# Data configuration
+data:
+  raw_filename: 'symptoms.csv'
+  test_size: 0.2
+  random_state: 42
+
+# Model configuration
+model:
+  type: 'random_forest'  # Options: random_forest, xgboost, svm
+  n_estimators: 200
+  max_depth: 20
+  learning_rate: 0.1
+  C: 1.0
+  kernel: 'rbf'
+
+# Training configuration
+training:
+  batch_size: 32
+  epochs: 50
+  patience: 5
