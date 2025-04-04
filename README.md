@@ -166,4 +166,121 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ---
 
-<p align="center">Made with ❤️ by Thorne Musau</p> 
+<p align="center">Made with ❤️ by Thorne Musau</p>
+
+# MedBot API
+
+A FastAPI-based backend for the MedBot system, providing endpoints for user authentication, chat interactions, and disease diagnosis.
+
+## Features
+
+- User authentication and management
+- Chat conversation handling
+- Disease diagnosis using ML model
+- Conversation history tracking
+- Diagnosis history tracking
+
+## Prerequisites
+
+- Python 3.8+
+- PostgreSQL (optional, SQLite by default)
+- Trained ML model and associated files
+
+## Installation
+
+1. Clone the repository:
+```bash
+git clone https://github.com/yourusername/medbot.git
+cd medbot
+```
+
+2. Create and activate a virtual environment:
+```bash
+python -m venv venv
+source venv/bin/activate  # On Windows: venv\Scripts\activate
+```
+
+3. Install dependencies:
+```bash
+pip install -r requirements.txt
+```
+
+4. Set up environment variables:
+Create a `.env` file in the project root with:
+```
+DATABASE_URL=sqlite:///./medbot.db  # Or your PostgreSQL URL
+SECRET_KEY=your-secret-key-here
+```
+
+5. Initialize the database:
+```bash
+alembic upgrade head
+```
+
+## Project Structure
+
+```
+medbot/
+├── api/
+│   ├── app.py              # FastAPI application
+│   ├── database.py         # Database configuration
+│   ├── models/             # Pydantic and SQLAlchemy models
+│   ├── routes/             # API endpoints
+│   ├── auth/              # Authentication utilities
+│   └── ml/                # ML model integration
+├── models/
+│   └── saved_models/      # Trained ML models
+├── data/
+│   └── processed/         # Processed data files
+├── alembic/               # Database migrations
+├── tests/                 # Test files
+├── requirements.txt       # Project dependencies
+└── README.md             # This file
+```
+
+## Running the API
+
+1. Start the server:
+```bash
+uvicorn api.app:app --reload
+```
+
+2. Access the API documentation:
+- Swagger UI: http://localhost:8000/docs
+- ReDoc: http://localhost:8000/redoc
+
+## API Endpoints
+
+### Authentication
+- POST `/auth/register` - Register a new user
+- POST `/auth/token` - Login and get access token
+
+### Chat
+- POST `/conversations` - Create a new conversation
+- GET `/conversations` - List user's conversations
+- GET `/conversations/{id}` - Get conversation details
+- POST `/chat` - Send a message and get response
+
+### Diagnosis
+- POST `/diagnose` - Get diagnosis for symptoms
+- GET `/diagnoses` - List user's diagnosis history
+- GET `/diagnoses/{id}` - Get diagnosis details
+
+## Testing
+
+Run the test suite:
+```bash
+pytest
+```
+
+## Contributing
+
+1. Fork the repository
+2. Create a feature branch
+3. Commit your changes
+4. Push to the branch
+5. Create a Pull Request
+
+## License
+
+This project is licensed under the MIT License - see the LICENSE file for details. 
